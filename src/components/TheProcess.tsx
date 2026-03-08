@@ -1,0 +1,185 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const steps = [
+  {
+    title: "Consult",
+    description:
+      "A conversation about you, your life, your aspirations. No judgement, just understanding.",
+    side: "right" as const,
+  },
+  {
+    title: "Profile",
+    description:
+      "We decode your style DNA — body, palette, lifestyle. The science behind the art.",
+    side: "left" as const,
+  },
+  {
+    title: "Curate",
+    description:
+      "Hand-selected pieces that tell your story. Every item intentional, every outfit effortless.",
+    side: "right" as const,
+  },
+  {
+    title: "Deliver",
+    description:
+      "Your new wardrobe arrives. Try, love, keep. The beginning of a new relationship with style.",
+    side: "left" as const,
+  },
+];
+
+export default function TheProcess() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<SVGLineElement>(null);
+  const nodesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const line = lineRef.current;
+      if (!line) return;
+
+      const lineLength = line.getTotalLength();
+      gsap.set(line, {
+        strokeDasharray: lineLength,
+        strokeDashoffset: lineLength,
+      });
+
+      // Main timeline for line drawing
+      gsap.to(line, {
+        strokeDashoffset: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 20%",
+          end: "bottom 80%",
+          scrub: 1,
+        },
+      });
+
+      // Animate each node and card
+      nodesRef.current.forEach((node, i) => {
+        if (!node) return;
+        const card = cardsRef.current[i];
+
+        gsap.fromTo(
+          node,
+          { scale: 0, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.5,
+            ease: "back.out(2)",
+            scrollTrigger: {
+              trigger: node,
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+
+        if (card) {
+          const xFrom = steps[i].side === "right" ? 60 : -60;
+          gsap.fromTo(
+            card,
+            { opacity: 0, x: xFrom },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: node,
+                start: "top 70%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="relative py-32 md:py-48 bg-white">
+      <div className="max-w-5xl mx-auto px-6">
+        <h2 className="font-display italic text-3xl md:text-4xl lg:text-5xl text-navy text-center mb-24">
+          The Process
+        </h2>
+
+        <div className="relative">
+          {/* Vertical SVG line */}
+          <svg
+            className="absolute left-6 md:left-1/2 top-0 h-full w-1 md:-translate-x-1/2"
+            preserveAspectRatio="none"
+          >
+            <line
+              ref={lineRef}
+              x1="50%"
+              y1="0"
+              x2="50%"
+              y2="100%"
+              stroke="#C9A84C"
+              strokeWidth="2"
+              opacity="0.5"
+            />
+          </svg>
+
+          {/* Steps */}
+          <div className="space-y-24 md:space-y-32">
+            {steps.map((step, i) => (
+              <div
+                key={step.title}
+                className={`relative flex items-center ${
+                  step.side === "right"
+                    ? "md:flex-row"
+                    : "md:flex-row-reverse"
+                } flex-row`}
+              >
+                {/* Node */}
+                <div
+                  className="absolute left-6 md:left-1/2 md:-translate-x-1/2 z-10"
+                  ref={(el) => { nodesRef.current[i] = el; }}
+                >
+                  <div className="w-4 h-4 rounded-full bg-champagne shadow-[0_0_20px_rgba(201,168,76,0.3)]" />
+                </div>
+
+                {/* Spacer for mobile */}
+                <div className="w-16 md:hidden shrink-0" />
+
+                {/* Content card */}
+                <div
+                  ref={(el) => { cardsRef.current[i] = el; }}
+                  className={`opacity-0 md:w-[calc(50%-3rem)] ${
+                    step.side === "right"
+                      ? "md:ml-auto md:pl-12"
+                      : "md:mr-auto md:pr-12"
+                  }`}
+                >
+                  <div className="bg-[#F0F3F9] backdrop-blur-sm rounded-card-lg p-8 border border-[#E2E6EF]">
+                    <span className="font-mono text-xs text-champagne tracking-widest uppercase">
+                      0{i + 1}
+                    </span>
+                    <h3 className="font-display italic text-2xl md:text-3xl text-navy mt-2 mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-navy/50 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
