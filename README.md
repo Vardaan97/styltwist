@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Styltwist - Luxury Wardrobe Consulting Website
+
+Live: [styltwist.vercel.app](https://styltwist.vercel.app)
+
+## Tech Stack
+
+- **Framework:** Next.js 14 (App Router) + TypeScript
+- **Styling:** Tailwind CSS 3.4
+- **Animations:** GSAP 3.12 + ScrollTrigger
+- **Smooth Scroll:** Lenis
+- **Icons:** Lucide React
+- **Form Validation:** Zod
+- **Email:** Resend API
+- **Deployment:** Vercel
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # fill in RESEND_API_KEY and NOTIFICATION_EMAIL
+npm run dev                   # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/                          # Pages (App Router)
+│   ├── page.tsx                  # Home (assembles scroll sections)
+│   ├── layout.tsx                # Root layout (fonts, metadata, JSON-LD)
+│   ├── about/                    # /about
+│   ├── contact/                  # /contact (lead form)
+│   ├── blog/                     # /blog + /blog/[slug]
+│   ├── services/                 # /services + 4 individual service pages
+│   └── api/contact/route.ts      # POST endpoint (Resend email)
+├── components/                   # UI components
+│   ├── Navbar.tsx                # Nav with desktop links + mobile menu
+│   ├── Footer.tsx                # Footer with links + contact info
+│   ├── OpeningSequence.tsx       # Hero scroll-driven text reveal
+│   ├── StylingBox.tsx            # Trunk Club-style curated box
+│   └── logos/StyltwistLogos.tsx  # 6 SVG logo variations
+├── lib/                          # Data + utilities
+│   ├── blog-data.ts              # Blog index (imports all batches)
+│   ├── blog-posts-batch[1-4].ts  # 16 blog posts
+│   └── validations/contact.ts    # Zod form schema
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Design Tokens
 
-## Learn More
+| Token | Value | Usage |
+|-------|-------|-------|
+| Navy | `#1B2A4A` | Text, CTA buttons |
+| Champagne | `#C9A84C` | Accent (sparingly) |
+| Light BG | `#F0F3F9` | Alternating sections |
+| Border | `#E2E6EF` | Cards/dividers |
 
-To learn more about Next.js, take a look at the following resources:
+**Fonts:** Playfair Display (headings), JetBrains Mono (labels), Inter (body)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding a Blog Post
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Add to `src/lib/blog-posts-batch4.ts` (or create batch5). Block types: `paragraph`, `heading`, `stat`, `stats-row`, `list`, `quote`, `callout`, `tip`. Import new batch in `blog-data.ts`, add slug to `sitemap.ts`.
 
-## Deploy on Vercel
+## Adding a Page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create `src/app/your-page/page.tsx` + `layout.tsx`. Wrap with `<LenisProvider>`, `<Navbar/>`, `<Footer/>`. Add to `sitemap.ts`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contacts
+
+- **Email:** soumyastyltwist@gmail.com | **Phone:** +91 704-8959-604
+- **Instagram:** [@styltwist](https://www.instagram.com/styltwist/)
+- **Location:** Gurgaon, Haryana, India
+
+## Deployment
+
+Auto-deploys on push to `main`. Manual: `vercel --prod`
