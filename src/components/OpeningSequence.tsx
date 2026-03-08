@@ -74,13 +74,36 @@ export default function OpeningSequence() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full bg-white flex items-center justify-center overflow-hidden"
+      className="relative h-screen w-full flex items-center justify-center overflow-hidden"
+      style={{ background: "linear-gradient(to bottom, #FFFFFF 60%, #F2E8DF)" }}
     >
-      {/* Decorative corner accents */}
-      <div className="absolute top-24 left-8 w-16 h-px bg-champagne/30" />
-      <div className="absolute top-24 left-8 w-px h-16 bg-champagne/30" />
-      <div className="absolute bottom-20 right-8 w-16 h-px bg-champagne/30" />
-      <div className="absolute bottom-20 right-8 w-px h-16 bg-champagne/30" />
+      {/* Fashion editorial background words */}
+      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
+        <span
+          className="absolute font-mono tracking-[0.3em] leading-none"
+          style={{ fontSize: "clamp(2rem,7vw,6rem)", color: "rgba(158,123,95,0.05)", top: "42%", right: "4%" }}
+        >
+          SS26
+        </span>
+      </div>
+
+      {/* Runway accent stripes — bottom left */}
+      <div className="absolute bottom-24 left-0 flex flex-col gap-[5px] pointer-events-none">
+        <div className="w-24 h-[2px]" style={{ background: "#C9A84C", opacity: 0.5 }} />
+        <div className="w-16 h-[2px]" style={{ background: "#C4A882", opacity: 0.4 }} />
+        <div className="w-10 h-[2px]" style={{ background: "#9E7B5F", opacity: 0.35 }} />
+      </div>
+
+      {/* Top-left L-bracket accent */}
+      <div className="absolute top-24 left-8 pointer-events-none">
+        <div className="w-20 h-[2px]" style={{ background: "linear-gradient(to right, #9E7B5F, #C9A84C)", opacity: 0.5 }} />
+        <div className="w-[2px] h-20" style={{ background: "linear-gradient(to bottom, #9E7B5F, transparent)", opacity: 0.5 }} />
+      </div>
+      {/* Bottom-right L-bracket accent */}
+      <div className="absolute bottom-20 right-8 pointer-events-none flex flex-col items-end">
+        <div className="w-[2px] h-20" style={{ background: "linear-gradient(to top, #C9A84C, transparent)", opacity: 0.5 }} />
+        <div className="w-20 h-[2px]" style={{ background: "linear-gradient(to left, #C9A84C, #9E7B5F)", opacity: 0.5 }} />
+      </div>
 
       {/* Initial tagline visible on load */}
       <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
@@ -91,10 +114,11 @@ export default function OpeningSequence() {
           Luxury Wardrobe Consulting
         </p>
 
-        {/* Gold decorative line */}
+        {/* Mocha→champagne decorative line */}
         <div
           ref={decorRef}
-          className="w-16 h-px bg-champagne mb-8 origin-center opacity-0"
+          className="w-16 h-px mb-8 origin-center opacity-0"
+          style={{ background: "linear-gradient(to right, #9E7B5F, #C9A84C, #9E7B5F)" }}
         />
 
         {/* Scroll-driven text lines */}

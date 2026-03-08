@@ -14,6 +14,10 @@ const config: Config = {
         ivory: "#1B2A4A",
         slate: "#F0F3F9",
         navy: "#1B2A4A",
+        mocha: "#9E7B5F",
+        "mocha-light": "#C4A882",
+        "mocha-dark": "#6B4F35",
+        blush: "#F2E8DF",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
