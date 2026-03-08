@@ -104,8 +104,8 @@ export default function Navbar() {
         {/* Progress bar */}
         <div
           ref={progressRef}
-          className="absolute bottom-0 left-0 h-[2px] w-full origin-left"
-          style={{ transform: "scaleX(0)", background: "linear-gradient(to right, #C9A84C, #9E7B5F)" }}
+          className="absolute bottom-0 left-0 h-[2px] w-full bg-navy origin-left"
+          style={{ transform: "scaleX(0)" }}
         />
       </nav>
 

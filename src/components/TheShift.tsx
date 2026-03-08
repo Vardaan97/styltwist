@@ -66,15 +66,9 @@ export default function TheShift() {
     <section
       ref={sectionRef}
       className="relative h-screen w-full flex items-center justify-center overflow-hidden"
-      style={{ background: "#F2E8DF" }}
+      style={{ background: "linear-gradient(to bottom, #FFFFFF, #F8F5F0)" }}
     >
-      {/* Right-side fabric seam stripe */}
-      <div
-        className="absolute top-0 right-0 w-[5px] h-full pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, #C4A882, #9E7B5F, #6B4F35)" }}
-      />
-
-      {/* S-curve SVG — thicker and more visible on warm background */}
+      {/* S-curve SVG */}
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 1200 800"
@@ -84,26 +78,17 @@ export default function TheShift() {
         <path
           ref={pathRef}
           d="M-50 400 C200 100, 400 100, 600 400 S1000 700, 1250 400"
-          stroke="#9E7B5F"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-          opacity="0.55"
-        />
-        {/* Secondary ghost curve for depth */}
-        <path
-          d="M-50 420 C200 120, 400 120, 600 420 S1000 720, 1250 420"
           stroke="#C9A84C"
-          strokeWidth="1"
+          strokeWidth="1.5"
           strokeLinecap="round"
-          opacity="0.2"
+          opacity="0.4"
         />
       </svg>
 
       {/* Text */}
       <p
         ref={textRef}
-        className="relative z-10 font-display italic text-3xl md:text-4xl lg:text-5xl text-center px-6 max-w-4xl"
-        style={{ color: "#6B4F35" }}
+        className="relative z-10 font-display italic text-3xl md:text-4xl lg:text-5xl text-champagne text-center px-6 max-w-4xl"
       >
         {question.split(" ").map((word, i) => (
           <span key={i} className="word inline-block mr-[0.3em] opacity-0">

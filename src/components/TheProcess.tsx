@@ -12,28 +12,24 @@ const steps = [
     description:
       "A conversation about you, your life, your aspirations. No judgement, just understanding.",
     side: "right" as const,
-    accentColor: "#C9A84C",
   },
   {
     title: "Profile",
     description:
       "We decode your style DNA — body, palette, lifestyle. The science behind the art.",
     side: "left" as const,
-    accentColor: "#C4A882",
   },
   {
     title: "Curate",
     description:
       "Hand-selected pieces that tell your story. Every item intentional, every outfit effortless.",
     side: "right" as const,
-    accentColor: "#9E7B5F",
   },
   {
     title: "Deliver",
     description:
       "Your new wardrobe arrives. Try, love, keep. The beginning of a new relationship with style.",
     side: "left" as const,
-    accentColor: "#6B4F35",
   },
 ];
 
@@ -112,12 +108,8 @@ export default function TheProcess() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-32 md:py-48 overflow-hidden"
-      style={{ background: "linear-gradient(to bottom, #FDFAF7, #F2E8DF 60%, #FDFAF7)" }}
-    >
-      <div className="max-w-5xl mx-auto px-6 relative z-10">
+    <section ref={sectionRef} className="relative py-32 md:py-48 bg-white">
+      <div className="max-w-5xl mx-auto px-6">
         <h2 className="font-display italic text-3xl md:text-4xl lg:text-5xl text-navy text-center mb-24">
           The Process
         </h2>
@@ -128,21 +120,15 @@ export default function TheProcess() {
             className="absolute left-6 md:left-1/2 top-0 h-full w-1 md:-translate-x-1/2"
             preserveAspectRatio="none"
           >
-            <defs>
-              <linearGradient id="timelineGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#C9A84C" stopOpacity="0.7" />
-                <stop offset="50%" stopColor="#9E7B5F" stopOpacity="0.7" />
-                <stop offset="100%" stopColor="#6B4F35" stopOpacity="0.7" />
-              </linearGradient>
-            </defs>
             <line
               ref={lineRef}
               x1="50%"
               y1="0"
               x2="50%"
               y2="100%"
-              stroke="url(#timelineGrad)"
+              stroke="#C9A84C"
               strokeWidth="2"
+              opacity="0.5"
             />
           </svg>
 
@@ -162,13 +148,7 @@ export default function TheProcess() {
                   className="absolute left-6 md:left-1/2 md:-translate-x-1/2 z-10"
                   ref={(el) => { nodesRef.current[i] = el; }}
                 >
-                  <div
-                    className="w-4 h-4 rounded-full"
-                    style={{
-                      backgroundColor: step.accentColor,
-                      boxShadow: `0 0 20px ${step.accentColor}55`,
-                    }}
-                  />
+                  <div className="w-4 h-4 rounded-full bg-champagne shadow-[0_0_20px_rgba(201,168,76,0.3)]" />
                 </div>
 
                 {/* Spacer for mobile */}
@@ -183,14 +163,8 @@ export default function TheProcess() {
                       : "md:mr-auto md:pr-12"
                   }`}
                 >
-                  <div
-                    className="bg-white backdrop-blur-sm rounded-card-lg p-8 border border-[#E2E6EF] overflow-hidden"
-                    style={{ borderLeftWidth: "4px", borderLeftColor: step.accentColor }}
-                  >
-                    <span
-                      className="font-mono text-xs tracking-widest uppercase"
-                      style={{ color: step.accentColor }}
-                    >
+                  <div className="bg-[#F0F3F9] backdrop-blur-sm rounded-card-lg p-8 border border-[#E2E6EF]">
+                    <span className="font-mono text-xs text-champagne tracking-widest uppercase">
                       0{i + 1}
                     </span>
                     <h3 className="font-display italic text-2xl md:text-3xl text-navy mt-2 mb-3">
