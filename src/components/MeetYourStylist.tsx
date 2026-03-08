@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -15,7 +15,7 @@ export default function MeetYourStylist() {
   const lineRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLParagraphElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -65,37 +65,57 @@ export default function MeetYourStylist() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden bg-[#F8F9FC]"
+      className="relative h-screen w-full overflow-hidden"
+      style={{ background: "linear-gradient(135deg, #F2E8DF 0%, #EDE0D4 50%, #F8F5F0 100%)" }}
     >
-      {/* Subtle background pattern */}
+      {/* Warm background layer with floating color orbs */}
       <div
         ref={bgLayerRef}
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.04) 0%, transparent 50%), radial-gradient(ellipse at 70% 50%, rgba(27,42,74,0.03) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 25% 40%, rgba(196,168,130,0.18) 0%, transparent 45%), radial-gradient(ellipse at 75% 60%, rgba(158,123,95,0.12) 0%, transparent 45%), radial-gradient(ellipse at 50% 20%, rgba(201,168,76,0.08) 0%, transparent 40%)",
         }}
       />
 
-      {/* Decorative corner accents */}
-      <div className="absolute top-20 left-12 w-20 h-px bg-champagne/20" />
-      <div className="absolute top-20 left-12 w-px h-20 bg-champagne/20" />
-      <div className="absolute bottom-20 right-12 w-20 h-px bg-champagne/20" />
-      <div className="absolute bottom-20 right-12 w-px h-20 bg-champagne/20" />
+      {/* Floating decorative circles — fashion palette reference */}
+      <div className="absolute top-[15%] left-[8%] w-32 h-32 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(196,168,130,0.22) 0%, transparent 70%)" }} />
+      <div className="absolute bottom-[20%] right-[10%] w-48 h-48 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)" }} />
+      <div className="absolute top-[55%] left-[5%] w-20 h-20 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(158,123,95,0.15) 0%, transparent 70%)" }} />
+
+      {/* Section counter */}
+      <span
+        className="absolute font-mono font-bold leading-none pointer-events-none select-none"
+        style={{ fontSize: "clamp(8rem,22vw,18rem)", color: "rgba(158,123,95,0.05)", top: "-4%", right: "2%" }}
+        aria-hidden="true"
+      >
+        02
+      </span>
+
+      {/* Decorative corner accents with mocha tones */}
+      <div className="absolute top-20 left-12 pointer-events-none">
+        <div className="w-20 h-[2px]" style={{ background: "linear-gradient(to right, #9E7B5F, transparent)", opacity: 0.4 }} />
+        <div className="w-[2px] h-20" style={{ background: "linear-gradient(to bottom, #9E7B5F, transparent)", opacity: 0.4 }} />
+      </div>
+      <div className="absolute bottom-20 right-12 pointer-events-none flex flex-col items-end">
+        <div className="w-[2px] h-20" style={{ background: "linear-gradient(to top, #C9A84C, transparent)", opacity: 0.4 }} />
+        <div className="w-20 h-[2px]" style={{ background: "linear-gradient(to left, #C9A84C, transparent)", opacity: 0.4 }} />
+      </div>
 
       {/* Content area — centered, clean, readable */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-6 text-center">
         <p
           ref={labelRef}
-          className="font-mono text-[10px] md:text-xs tracking-[0.4em] uppercase text-champagne mb-8 opacity-0"
+          className="font-mono text-[10px] md:text-xs tracking-[0.4em] uppercase mb-8 opacity-0"
+          style={{ color: "#9E7B5F" }}
         >
           Your Style Partner
         </p>
 
         <div
           ref={lineRef}
-          className="w-16 h-px bg-champagne mb-8 origin-center"
-          style={{ transform: "scaleX(0)" }}
+          className="w-16 h-px mb-8 origin-center"
+          style={{ transform: "scaleX(0)", background: "linear-gradient(to right, #9E7B5F, #C9A84C)" }}
         />
 
         <div ref={fgLayerRef} className="opacity-0 max-w-2xl">
@@ -112,20 +132,22 @@ export default function MeetYourStylist() {
         </div>
       </div>
 
-      {/* Left door panel */}
+      {/* Left door panel — warm inner edge */}
       <div
         ref={leftPanelRef}
-        className="absolute top-0 left-0 w-1/2 h-full bg-white z-20"
+        className="absolute top-0 left-0 w-1/2 h-full z-20"
+        style={{ background: "linear-gradient(to right, #FFFFFF, #FDFAF7)" }}
       >
-        <div className="absolute right-0 top-0 w-px h-full bg-[#E2E6EF]" />
+        <div className="absolute right-0 top-0 w-px h-full" style={{ background: "linear-gradient(to bottom, #C4A882, #E2E6EF, #C4A882)", opacity: 0.5 }} />
       </div>
 
-      {/* Right door panel */}
+      {/* Right door panel — warm inner edge */}
       <div
         ref={rightPanelRef}
-        className="absolute top-0 right-0 w-1/2 h-full bg-white z-20"
+        className="absolute top-0 right-0 w-1/2 h-full z-20"
+        style={{ background: "linear-gradient(to left, #FFFFFF, #FDFAF7)" }}
       >
-        <div className="absolute left-0 top-0 w-px h-full bg-[#E2E6EF]" />
+        <div className="absolute left-0 top-0 w-px h-full" style={{ background: "linear-gradient(to bottom, #C4A882, #E2E6EF, #C4A882)", opacity: 0.5 }} />
       </div>
     </section>
   );

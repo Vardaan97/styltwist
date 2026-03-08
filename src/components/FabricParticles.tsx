@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+type ParticleType = "circle" | "diamond" | "blob";
+
 interface Particle {
   x: number;
   y: number;
@@ -9,7 +11,16 @@ interface Particle {
   speedX: number;
   speedY: number;
   opacity: number;
+  type: ParticleType;
+  color: string;
 }
+
+const COLORS = [
+  "27, 42, 74",    // navy
+  "201, 168, 76",  // champagne
+  "158, 123, 95",  // mocha
+  "196, 168, 130", // mocha-light
+];
 
 export default function FabricParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -24,7 +35,7 @@ export default function FabricParticles() {
     if (!ctx) return;
 
     const isMobile = window.innerWidth < 768;
-    const count = isMobile ? 15 : 35;
+    const count = isMobile ? 18 : 42;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -38,14 +49,38 @@ export default function FabricParticles() {
     };
     window.addEventListener("mousemove", handleMouse);
 
-    particlesRef.current = Array.from({ length: count }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: 1 + Math.random() * 2,
-      speedX: (Math.random() - 0.5) * 0.3,
-      speedY: (Math.random() - 0.5) * 0.3,
-      opacity: 0.03 + Math.random() * 0.08,
-    }));
+    particlesRef.current = Array.from({ length: count }, (_, i) => {
+      const roll = Math.random();
+      // 70% circles (navy), 15% diamonds (champagne), 15% blobs (mocha)
+      const type: ParticleType = roll < 0.7 ? "circle" : roll < 0.85 ? "diamond" : "blob";
+      const colorIdx = type === "circle" ? 0 : type === "diamond" ? 1 : (Math.random() < 0.5 ? 2 : 3);
+      // Larger size range than before
+      const size = type === "blob" ? 6 + Math.random() * 8 : type === "diamond" ? 3 + Math.random() * 5 : 1.5 + Math.random() * 4;
+      return {
+        x: Math.random() * (canvas?.width ?? 1200),
+        y: Math.random() * (canvas?.height ?? 800),
+        size,
+        speedX: (Math.random() - 0.5) * 0.25,
+        speedY: (Math.random() - 0.5) * 0.25,
+        opacity: 0.05 + Math.random() * 0.13,
+        type,
+        color: COLORS[colorIdx],
+      };
+    });
+
+    const drawDiamond = (ctx: CanvasRenderingContext2D, x: number, y: number, size: number) => {
+      ctx.beginPath();
+      ctx.moveTo(x, y - size);
+      ctx.lineTo(x + size, y);
+      ctx.lineTo(x, y + size);
+      ctx.lineTo(x - size, y);
+      ctx.closePath();
+    };
+
+    const drawBlob = (ctx: CanvasRenderingContext2D, x: number, y: number, size: number) => {
+      ctx.beginPath();
+      ctx.ellipse(x, y, size, size * 0.7, Math.PI / 4, 0, Math.PI * 2);
+    };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -55,8 +90,8 @@ export default function FabricParticles() {
       for (const p of particlesRef.current) {
         const dx = (mx - canvas.width / 2) / canvas.width;
         const dy = (my - canvas.height / 2) / canvas.height;
-        const parallaxX = dx * 4;
-        const parallaxY = dy * 4;
+        const parallaxX = dx * 5;
+        const parallaxY = dy * 5;
 
         p.x += p.speedX;
         p.y += p.speedY;
@@ -66,10 +101,22 @@ export default function FabricParticles() {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
-        ctx.beginPath();
-        ctx.arc(p.x + parallaxX, p.y + parallaxY, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(27, 42, 74, ${p.opacity})`;
-        ctx.fill();
+        const px = p.x + parallaxX;
+        const py = p.y + parallaxY;
+
+        ctx.fillStyle = `rgba(${p.color}, ${p.opacity})`;
+
+        if (p.type === "circle") {
+          ctx.beginPath();
+          ctx.arc(px, py, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        } else if (p.type === "diamond") {
+          drawDiamond(ctx, px, py, p.size);
+          ctx.fill();
+        } else {
+          drawBlob(ctx, px, py, p.size);
+          ctx.fill();
+        }
       }
 
       animFrameRef.current = requestAnimationFrame(animate);

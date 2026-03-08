@@ -102,7 +102,7 @@ export default function ServicesPage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="bg-white pt-32 pb-16 px-6">
+        <section className="pt-32 pb-16 px-6" style={{ background: "linear-gradient(to bottom, #FDFAF7, #F2E8DF)" }}>
           <div ref={heroRef} className="opacity-0 max-w-4xl mx-auto text-center">
             <p className="font-mono text-xs tracking-widest uppercase text-champagne mb-6">
               What We Offer
@@ -119,7 +119,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Stats Bar */}
-        <section className="bg-[#F0F3F9] py-12 px-6 border-y border-[#E2E6EF]">
+        <section className="py-12 px-6 border-y border-[#E2E6EF]" style={{ background: "#F2E8DF" }}>
           <div ref={statsRef} className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
               <div

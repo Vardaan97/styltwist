@@ -104,21 +104,23 @@ export default function Navbar() {
         {/* Progress bar */}
         <div
           ref={progressRef}
-          className="absolute bottom-0 left-0 h-[2px] w-full bg-navy origin-left"
-          style={{ transform: "scaleX(0)" }}
+          className="absolute bottom-0 left-0 h-[2px] w-full origin-left"
+          style={{ transform: "scaleX(0)", background: "linear-gradient(to right, #C9A84C, #9E7B5F)" }}
         />
       </nav>
 
       {/* Mobile Menu Overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-white pt-20 px-6 md:hidden">
+        <div className="fixed inset-0 z-40 bg-[#FDFAF7] pt-20 px-6 md:hidden">
+          {/* Mocha top accent strip */}
+          <div className="absolute top-0 left-0 w-full h-[3px]" style={{ background: "linear-gradient(to right, #C9A84C, #9E7B5F, #6B4F35)" }} />
           <div className="flex flex-col gap-6 py-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="font-display italic text-2xl text-navy hover:text-champagne transition-colors"
+                className="font-display italic text-2xl text-navy hover:text-[#9E7B5F] transition-colors"
               >
                 {link.label}
               </Link>
@@ -134,7 +136,7 @@ export default function Navbar() {
             </div>
           </div>
           <div className="absolute bottom-8 left-6 right-6">
-            <p className="font-mono text-[10px] tracking-widest uppercase text-navy/20">
+            <p className="font-mono text-[10px] tracking-widest uppercase text-[#9E7B5F]/30">
               Luxury Wardrobe Consulting
             </p>
           </div>
