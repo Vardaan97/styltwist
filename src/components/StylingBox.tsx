@@ -77,7 +77,7 @@ export default function StylingBox() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-32 bg-[#F8F9FC] overflow-hidden px-6">
+    <section ref={sectionRef} className="relative py-24 md:py-32 overflow-hidden px-6" style={{ background: "linear-gradient(to bottom, #FDFAF7, #F2E8DF 60%, #FDFAF7)" }}>
       <div ref={headerRef} className="opacity-0 text-center mb-16 md:mb-20">
         <p className="font-mono text-[10px] md:text-xs tracking-[0.4em] uppercase text-champagne mb-4">
           Curated For You
@@ -113,7 +113,7 @@ export default function StylingBox() {
 
           {/* Box body */}
           <div className="bg-white rounded-b-card-lg border border-t-0 border-[#E2E6EF] p-6 md:p-10">
-            <div className="bg-[#F8F9FC]/50 rounded-card p-6 md:p-8 border border-[#E8EBF2] border-dashed">
+            <div className="bg-white/60 rounded-card p-6 md:p-8 border border-[#E8EBF2] border-dashed">
               <div className="space-y-4">
                 {curatedItems.map((item, i) => (
                   <div
@@ -125,7 +125,7 @@ export default function StylingBox() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
 
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-card bg-[#F0F3F9] border border-[#E2E6EF] shrink-0 flex items-center justify-center group-hover:border-champagne/30 transition-colors">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-card bg-[#F5EFE8] border border-[#E2E6EF] shrink-0 flex items-center justify-center group-hover:border-champagne/40 transition-colors">
                       <svg className="w-5 h-5 text-navy/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                         {i === 0 && <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />}
                         {i === 1 && <><path d="M20.38 3.46L16 2 7.56 14.27a4 4 0 00-.38 3.65L9 21l6-5.5" /><path d="M10.95 12.36L16 2" /></>}
@@ -166,7 +166,7 @@ export default function StylingBox() {
                     &ldquo;These pieces work beautifully with your existing navy and cream palette. Mix and match for 15+ outfits.&rdquo;
                   </p>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-champagne/10 flex items-center justify-center shrink-0 ml-4">
+                <div className="w-8 h-8 rounded-full bg-[#9E7B5F]/15 flex items-center justify-center shrink-0 ml-4">
                   <span className="font-display italic text-champagne text-[10px]">SS</span>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -13,7 +13,7 @@ export default function OpeningSequence() {
   const line2Ref = useRef<HTMLParagraphElement>(null);
   const decorRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Entrance animation on load — tagline and decorative elements
       const entranceTl = gsap.timeline({ delay: 0.3 });
@@ -124,13 +124,13 @@ export default function OpeningSequence() {
         {/* Scroll-driven text lines */}
         <p
           ref={line1Ref}
-          className="absolute font-display italic text-4xl md:text-5xl lg:text-6xl text-navy text-center px-6 opacity-0"
+          className="absolute font-display italic text-5xl md:text-6xl lg:text-7xl leading-tight text-navy text-center px-6 opacity-0"
         >
           Your closet is full.
         </p>
         <p
           ref={line2Ref}
-          className="absolute font-display italic text-4xl md:text-5xl lg:text-6xl text-navy text-center px-6 opacity-0"
+          className="absolute font-display italic text-5xl md:text-6xl lg:text-7xl leading-tight text-navy text-center px-6 opacity-0"
         >
           But nothing feels right.
         </p>
