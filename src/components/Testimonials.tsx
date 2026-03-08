@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -12,32 +12,24 @@ const testimonials = [
       "I used to stand in front of my closet for twenty minutes every morning. Now I reach in and everything works.",
     name: "Sophia M.",
     title: "Creative Director",
-    bg: "linear-gradient(135deg, #F2E8DF 0%, #EDE0D4 100%)",
-    topBorderColor: "#9E7B5F",
   },
   {
     quote:
       "It wasn't about buying more clothes. It was about understanding myself. That's what Styltwist gave me.",
     name: "James K.",
     title: "Entrepreneur",
-    bg: "linear-gradient(135deg, #FFFDF5 0%, #FFF8E8 100%)",
-    topBorderColor: "#C9A84C",
   },
   {
     quote:
       "For the first time in years, I feel like my outside matches my inside. Confident, intentional, me.",
     name: "Amara L.",
     title: "Architect",
-    bg: "linear-gradient(135deg, #F0F3F9 0%, #EBF0F8 100%)",
-    topBorderColor: "#1B2A4A",
   },
   {
     quote:
       "They didn't just style me — they listened. Every piece tells a story I'm proud to wear.",
     name: "Elena V.",
     title: "Physician",
-    bg: "linear-gradient(135deg, #F5F0EB 0%, #EDE5DD 100%)",
-    topBorderColor: "#C4A882",
   },
 ];
 
@@ -46,7 +38,7 @@ export default function Testimonials() {
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
   const dotsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const ctx = gsap.context(() => {
       const totalSlides = testimonials.length;
 
@@ -91,51 +83,38 @@ export default function Testimonials() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden"
+      className="relative h-screen w-full bg-white flex items-center justify-center overflow-hidden"
     >
-      {/* Testimonial slides — each with its own background */}
+      {/* Decorative quote mark */}
+      <span
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20rem] md:text-[30rem] font-display text-champagne/[0.08] leading-none select-none pointer-events-none"
+        aria-hidden="true"
+      >
+        &ldquo;
+      </span>
+
+      {/* Testimonial slides */}
       {testimonials.map((t, i) => (
         <div
           key={i}
           ref={(el) => { slidesRef.current[i] = el; }}
           className="absolute inset-0 flex flex-col items-center justify-center px-6 md:px-16"
-          style={{ opacity: i === 0 ? 1 : 0, background: t.bg }}
+          style={{ opacity: i === 0 ? 1 : 0 }}
         >
-          {/* Colored top border stripe */}
-          <div
-            className="absolute top-0 left-0 w-full h-[3px]"
-            style={{ background: t.topBorderColor }}
-          />
-
-          {/* Decorative quote mark — mocha tinted */}
-          <span
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20rem] md:text-[30rem] font-display leading-none select-none pointer-events-none"
-            style={{ color: `${t.topBorderColor}1A` }}
-            aria-hidden="true"
-          >
-            &ldquo;
-          </span>
-
-          <blockquote className="relative z-10 font-display italic text-2xl md:text-3xl lg:text-5xl text-navy text-center max-w-4xl leading-snug mb-10">
+          <blockquote className="font-display italic text-2xl md:text-3xl lg:text-5xl text-navy text-center max-w-4xl leading-snug mb-8">
             &ldquo;{t.quote}&rdquo;
           </blockquote>
-
-          {/* Editorial name dividers */}
-          <div className="relative z-10 flex items-center gap-4 text-center">
-            <div className="w-12 h-px" style={{ background: t.topBorderColor, opacity: 0.5 }} />
-            <div>
-              <p className="font-mono text-xs tracking-widest uppercase" style={{ color: t.topBorderColor }}>
-                {t.name}
-              </p>
-              <p className="font-mono text-xs text-navy/40 mt-1">{t.title}</p>
-            </div>
-            <div className="w-12 h-px" style={{ background: t.topBorderColor, opacity: 0.5 }} />
+          <div className="text-center">
+            <p className="font-mono text-xs tracking-widest text-champagne uppercase">
+              {t.name}
+            </p>
+            <p className="font-mono text-xs text-navy/40 mt-1">{t.title}</p>
           </div>
         </div>
       ))}
 
       {/* Progress dots */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-3">
         {testimonials.map((_, i) => (
           <div
             key={i}

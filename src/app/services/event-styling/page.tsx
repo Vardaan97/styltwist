@@ -291,7 +291,7 @@ export default function EventStylingPage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-20 px-6" style={{ background: "linear-gradient(to bottom, #FDFAF7, #F2E8DF)" }}>
+        <section className="bg-white pt-32 pb-20 px-6">
           <div ref={heroRef} className="opacity-0 max-w-4xl mx-auto text-center">
             <p className="font-mono text-xs tracking-widest uppercase text-champagne mb-6">
               <Link href="/services" className="hover:text-navy transition-colors">

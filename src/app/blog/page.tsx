@@ -13,7 +13,6 @@ import type { BlogPost } from "@/lib/blog-types";
 gsap.registerPlugin(ScrollTrigger);
 
 const categories = ["All", "Wardrobe", "Styling", "Trends", "Sustainability", "Psychology", "Culture"];
-const cardAccents = ["#C9A84C", "#9E7B5F", "#C4A882", "#1B2A4A"];
 
 export default function BlogPage() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -56,7 +55,7 @@ export default function BlogPage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-16 px-6" style={{ background: "linear-gradient(to bottom, #FDFAF7, #F2E8DF)" }}>
+        <section className="bg-white pt-32 pb-16 px-6">
           <div ref={heroRef} className="opacity-0 max-w-4xl mx-auto text-center">
             <p className="font-mono text-xs tracking-widest uppercase text-champagne mb-6">
               The Style Journal
@@ -72,7 +71,7 @@ export default function BlogPage() {
         </section>
 
         {/* Category Filter */}
-        <section className="bg-[#F2E8DF] pb-8 px-6">
+        <section className="bg-white pb-8 px-6">
           <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
               <button
@@ -80,10 +79,9 @@ export default function BlogPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`font-mono text-xs tracking-widest uppercase px-5 py-2.5 rounded-pill transition-all duration-300 ${
                   activeCategory === cat
-                    ? "text-white"
+                    ? "bg-navy text-white"
                     : "text-navy/40 border border-[#E2E6EF] hover:border-navy/30 hover:text-navy/70"
                 }`}
-                style={activeCategory === cat ? { backgroundColor: "#9E7B5F" } : {}}
               >
                 {cat}
               </button>
@@ -93,7 +91,7 @@ export default function BlogPage() {
 
         {/* Featured Post */}
         {activeCategory === "All" && allPosts.length > 0 && (
-          <section className="py-16 px-6 border-y border-[#E2E6EF]" style={{ background: "#F2E8DF" }}>
+          <section className="bg-[#F0F3F9] py-16 px-6 border-y border-[#E2E6EF]">
             <div className="max-w-5xl mx-auto">
               <Link href={`/blog/${allPosts[0].slug}`} className="group block">
                 <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
@@ -115,7 +113,7 @@ export default function BlogPage() {
                       <span>{allPosts[0].category}</span>
                     </div>
                   </div>
-                  <div className="lg:w-[40%] bg-white rounded-card-lg p-8 border border-[#E2E6EF]" style={{ borderLeftWidth: "4px", borderLeftColor: "#9E7B5F" }}>
+                  <div className="lg:w-[40%] bg-white rounded-card-lg p-8 border border-[#E2E6EF]">
                     <p className="font-mono text-[10px] tracking-widest uppercase text-navy/30 mb-4">Key Insight</p>
                     {allPosts[0].content.find((b) => b.type === "stat") ? (
                       (() => {
@@ -144,7 +142,7 @@ export default function BlogPage() {
         )}
 
         {/* Posts Grid */}
-        <section className="py-16 md:py-24 px-6" style={{ background: "linear-gradient(to bottom, #F2E8DF, #FDFAF7 40%)" }}>
+        <section className="bg-white py-16 md:py-24 px-6">
           <div ref={gridRef} className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {(activeCategory === "All" ? filteredPosts.slice(1) : filteredPosts).map((post: BlogPost, i: number) => (
@@ -154,10 +152,7 @@ export default function BlogPage() {
                   className="opacity-0 group"
                 >
                   <Link href={`/blog/${post.slug}`} className="block">
-                    <div className="bg-white rounded-card-lg overflow-hidden border border-[#E2E6EF] h-full flex flex-col hover:border-champagne/30 transition-colors duration-300">
-                      {/* Color accent top border */}
-                      <div className="h-[3px] w-full shrink-0" style={{ background: cardAccents[i % cardAccents.length] }} />
-                    <div className="p-6 flex flex-col flex-1">
+                    <div className="bg-[#F0F3F9] rounded-card-lg p-6 border border-[#E2E6EF] h-full flex flex-col hover:border-champagne/30 transition-colors duration-300">
                       <div className="flex items-center gap-3 mb-4">
                         <span className="font-mono text-[10px] tracking-widest uppercase text-champagne">
                           {post.category}
@@ -182,7 +177,6 @@ export default function BlogPage() {
                         </span>
                       </div>
                     </div>
-                    </div>
                   </Link>
                 </article>
               ))}
@@ -191,7 +185,7 @@ export default function BlogPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 md:py-24 px-6 border-t border-[#E2E6EF]" style={{ background: "#F2E8DF" }}>
+        <section className="bg-[#F0F3F9] py-16 md:py-24 px-6 border-t border-[#E2E6EF]">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display italic text-3xl md:text-4xl text-navy mb-6">
               Ready to Put These Ideas Into Practice?

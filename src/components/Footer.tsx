@@ -40,9 +40,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={sectionRef} className="relative bg-[#FAFAF8] border-t border-champagne py-16 md:py-20 px-6">
-      {/* Mocha gradient top strip */}
-      <div className="absolute top-0 left-0 w-full h-1" style={{ background: "linear-gradient(to right, #C9A84C, #9E7B5F, #6B4F35)" }} />
+    <footer ref={sectionRef} className="relative bg-[#F0F3F9] border-t border-champagne py-16 md:py-20 px-6">
       <div className="max-w-7xl mx-auto">
         {/* 4-column grid */}
         <div

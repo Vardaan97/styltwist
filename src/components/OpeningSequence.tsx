@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -13,7 +13,7 @@ export default function OpeningSequence() {
   const line2Ref = useRef<HTMLParagraphElement>(null);
   const decorRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const ctx = gsap.context(() => {
       // Entrance animation on load — tagline and decorative elements
       const entranceTl = gsap.timeline({ delay: 0.3 });
@@ -74,36 +74,13 @@ export default function OpeningSequence() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden"
-      style={{ background: "linear-gradient(to bottom, #FFFFFF 60%, #F2E8DF)" }}
+      className="relative h-screen w-full bg-white flex items-center justify-center overflow-hidden"
     >
-      {/* Fashion editorial background words */}
-      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-        <span
-          className="absolute font-mono tracking-[0.3em] leading-none"
-          style={{ fontSize: "clamp(2rem,7vw,6rem)", color: "rgba(158,123,95,0.05)", top: "42%", right: "4%" }}
-        >
-          SS26
-        </span>
-      </div>
-
-      {/* Runway accent stripes — bottom left */}
-      <div className="absolute bottom-24 left-0 flex flex-col gap-[5px] pointer-events-none">
-        <div className="w-24 h-[2px]" style={{ background: "#C9A84C", opacity: 0.5 }} />
-        <div className="w-16 h-[2px]" style={{ background: "#C4A882", opacity: 0.4 }} />
-        <div className="w-10 h-[2px]" style={{ background: "#9E7B5F", opacity: 0.35 }} />
-      </div>
-
-      {/* Top-left L-bracket accent */}
-      <div className="absolute top-24 left-8 pointer-events-none">
-        <div className="w-20 h-[2px]" style={{ background: "linear-gradient(to right, #9E7B5F, #C9A84C)", opacity: 0.5 }} />
-        <div className="w-[2px] h-20" style={{ background: "linear-gradient(to bottom, #9E7B5F, transparent)", opacity: 0.5 }} />
-      </div>
-      {/* Bottom-right L-bracket accent */}
-      <div className="absolute bottom-20 right-8 pointer-events-none flex flex-col items-end">
-        <div className="w-[2px] h-20" style={{ background: "linear-gradient(to top, #C9A84C, transparent)", opacity: 0.5 }} />
-        <div className="w-20 h-[2px]" style={{ background: "linear-gradient(to left, #C9A84C, #9E7B5F)", opacity: 0.5 }} />
-      </div>
+      {/* Decorative corner accents */}
+      <div className="absolute top-24 left-8 w-16 h-px bg-champagne/30" />
+      <div className="absolute top-24 left-8 w-px h-16 bg-champagne/30" />
+      <div className="absolute bottom-20 right-8 w-16 h-px bg-champagne/30" />
+      <div className="absolute bottom-20 right-8 w-px h-16 bg-champagne/30" />
 
       {/* Initial tagline visible on load */}
       <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
@@ -114,23 +91,22 @@ export default function OpeningSequence() {
           Luxury Wardrobe Consulting
         </p>
 
-        {/* Mocha→champagne decorative line */}
+        {/* Gold decorative line */}
         <div
           ref={decorRef}
-          className="w-16 h-px mb-8 origin-center opacity-0"
-          style={{ background: "linear-gradient(to right, #9E7B5F, #C9A84C, #9E7B5F)" }}
+          className="w-16 h-px bg-champagne mb-8 origin-center opacity-0"
         />
 
         {/* Scroll-driven text lines */}
         <p
           ref={line1Ref}
-          className="absolute font-display italic text-5xl md:text-6xl lg:text-7xl leading-tight text-navy text-center px-6 opacity-0"
+          className="absolute font-display italic text-4xl md:text-5xl lg:text-6xl text-navy text-center px-6 opacity-0"
         >
           Your closet is full.
         </p>
         <p
           ref={line2Ref}
-          className="absolute font-display italic text-5xl md:text-6xl lg:text-7xl leading-tight text-navy text-center px-6 opacity-0"
+          className="absolute font-display italic text-4xl md:text-5xl lg:text-6xl text-navy text-center px-6 opacity-0"
         >
           But nothing feels right.
         </p>

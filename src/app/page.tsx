@@ -10,7 +10,6 @@ import Testimonials from "@/components/Testimonials";
 import TheInvitation from "@/components/TheInvitation";
 import Footer from "@/components/Footer";
 import FabricParticles from "@/components/FabricParticles";
-import StatsStrip from "@/components/StatsStrip";
 
 export default function Home() {
   return (
@@ -20,7 +19,6 @@ export default function Home() {
       <main>
         <OpeningSequence />
         <TheShift />
-        <StatsStrip />
         <MeetYourStylist />
         <TheProcess />
         <WardrobeShowcase />
