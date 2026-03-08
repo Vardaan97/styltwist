@@ -73,7 +73,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} ${jetbrains.variable} font-sans antialiased`}
       >
         <JsonLd />
-        {children}
+        <div className="page-transition">{children}</div>
         {/* SVG Noise Overlay - reduced for light theme */}
         <svg className="noise-overlay" style={{ opacity: 0.015 }} aria-hidden="true">
           <filter id="noise">

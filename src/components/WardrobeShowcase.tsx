@@ -95,10 +95,16 @@ export default function WardrobeShowcase() {
   };
 
   return (
-    <section ref={sectionRef} className="relative py-32 md:py-0 md:h-screen bg-white overflow-hidden">
-      <h2 className="font-display italic text-3xl md:text-4xl lg:text-5xl text-navy text-center pt-8 md:pt-24 mb-16">
-        Your Wardrobe, Curated
-      </h2>
+    <section ref={sectionRef} className="relative py-32 md:py-0 md:h-screen overflow-hidden" style={{ background: "linear-gradient(to bottom, #FDFAF7, #F5EFE8 50%, #FDFAF7)" }}>
+      <div className="text-center pt-8 md:pt-24 mb-16">
+        <p className="font-mono text-[10px] md:text-xs tracking-[0.4em] uppercase mb-4" style={{ color: "#9E7B5F" }}>
+          The Collection
+        </p>
+        <h2 className="font-display italic text-3xl md:text-4xl lg:text-5xl text-navy mb-4">
+          Your Wardrobe, Curated
+        </h2>
+        <div className="w-16 h-px mx-auto" style={{ background: "linear-gradient(to right, #9E7B5F, #C9A84C)" }} />
+      </div>
 
       {/* Mobile: horizontal scroll */}
       <div className="md:hidden flex gap-4 px-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">

@@ -77,7 +77,7 @@ export default function StylingBox() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-32 bg-[#F8F9FC] overflow-hidden px-6">
+    <section ref={sectionRef} className="relative py-24 md:py-32 overflow-hidden px-6" style={{ background: "linear-gradient(to bottom, #FDFAF7, #F2E8DF 60%, #FDFAF7)" }}>
       <div ref={headerRef} className="opacity-0 text-center mb-16 md:mb-20">
         <p className="font-mono text-[10px] md:text-xs tracking-[0.4em] uppercase text-champagne mb-4">
           Curated For You
