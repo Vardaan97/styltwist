@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: "200+", label: "Clients Styled" },
+  { value: "150+", label: "Clients Styled" },
   { value: "98%", label: "Satisfaction Rate" },
-  { value: "5+", label: "Years Experience" },
+  { value: "2+", label: "Years Experience" },
   { value: "15+", label: "Brands Curated" },
 ];
 

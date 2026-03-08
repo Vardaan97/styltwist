@@ -49,7 +49,7 @@ export default function FabricParticles() {
     };
     window.addEventListener("mousemove", handleMouse);
 
-    particlesRef.current = Array.from({ length: count }, (_, i) => {
+    particlesRef.current = Array.from({ length: count }, () => {
       const roll = Math.random();
       // 70% circles (navy), 15% diamonds (champagne), 15% blobs (mocha)
       const type: ParticleType = roll < 0.7 ? "circle" : roll < 0.85 ? "diamond" : "blob";

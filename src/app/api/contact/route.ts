@@ -146,7 +146,7 @@ function buildWelcomeEmailHtml(data: Record<string, string>) {
           <!-- CTA Button -->
           <tr>
             <td style="padding: 32px 40px; text-align: center;">
-              <a href="https://www.styltwist.com/services/wardrobe-consulting" style="display: inline-block; padding: 16px 40px; background-color: #1B2A4A; color: #FFFFFF; text-decoration: none; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-family: 'Courier New', monospace; border-radius: 9999px;">
+              <a href="https://styltwist.vercel.app/services" style="display: inline-block; padding: 16px 40px; background-color: #1B2A4A; color: #FFFFFF; text-decoration: none; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-family: 'Courier New', monospace; border-radius: 9999px;">
                 Explore Our Services
               </a>
             </td>
@@ -191,7 +191,7 @@ function buildWelcomeEmailHtml(data: Record<string, string>) {
               <div style="width: 40px; height: 1px; background-color: #C9A84C; margin: 20px auto;"></div>
               <p style="margin: 0; font-size: 12px; color: #8B95A8; font-family: system-ui, sans-serif; line-height: 1.6;">
                 Questions? Reply to this email or reach us at<br />
-                <a href="mailto:soumyastylwist@gmail.com" style="color: #C9A84C; text-decoration: none;">soumyastylwist@gmail.com</a>
+                <a href="mailto:soumyastyltwist@gmail.com" style="color: #C9A84C; text-decoration: none;">soumyastyltwist@gmail.com</a>
               </p>
               <p style="margin: 16px 0 0; font-size: 11px; color: #5A6478; font-family: system-ui, sans-serif;">
                 &copy; ${new Date().getFullYear()} Styltwist. All rights reserved.
@@ -228,7 +228,7 @@ async function sendWelcomeEmail(data: Record<string, string>) {
 async function sendNotificationEmail(data: Record<string, string>) {
   try {
     const notificationEmail =
-      process.env.NOTIFICATION_EMAIL || "soumyastylwist@gmail.com";
+      process.env.NOTIFICATION_EMAIL || "soumyastyltwist@gmail.com";
 
     await getResend().emails.send({
       from: "Style Twist <onboarding@resend.dev>",
